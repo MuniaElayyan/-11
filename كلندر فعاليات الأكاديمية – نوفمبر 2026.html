@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>كلندر فعاليات الأكاديمية – نوفمبر 2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#F7F8FA;--sf:#fff;--ink:#1B2430;--mu:#4A5565;--ln:#DDE2EA;--wk:#EEF1F6;--ac:#1F5FBF;--acf:#fff;--eb:#E4EDFB;--ef:#174C9C;--pb:#FBE9D2;--pf:#7A3F05;--er:#B3261E;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Tajawal',system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 40px;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+.kick{font-size:15px;font-weight:700;color:var(--ac)}
+h1{margin:2px 0 0;font-size:clamp(34px,6vw,56px);font-weight:800;line-height:1.1}
+.leg{display:flex;gap:10px}
+.chip,.pill{display:inline-flex;align-items:center;gap:6px;border-radius:7px;padding:4px 8px;font:500 13px 'Tajawal',sans-serif;border:0}
+.e{background:var(--eb);color:var(--ef)}.p{background:var(--pb);color:var(--pf)}
+.leg .chip{font-size:15px;padding:8px 14px;font-weight:700}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:18px}
+h2{margin:0 0 12px;font-size:20px;font-weight:800}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;align-items:end}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700;color:var(--mu)}
+input,select{font:500 15px 'Tajawal',sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--ln);border-radius:8px;padding:10px;min-height:44px;width:100%}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font:700 15px 'Tajawal',sans-serif;min-height:44px;padding:0 18px;border-radius:8px;border:1px solid var(--ln);background:var(--sf);color:var(--ink);cursor:pointer}
+.btn.pri{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+.btn.del{color:var(--er)}
+#msg{min-height:20px;font-size:14px;color:var(--mu);margin-top:8px}
+.sc{overflow-x:auto}
+.cal{min-width:760px;display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.wd{text-align:center;font-weight:700;font-size:15px;color:var(--mu);padding:6px 0}
+.d{background:var(--sf);border:1px solid var(--ln);border-radius:10px;min-height:104px;padding:8px;display:flex;flex-direction:column;gap:6px}
+.d.w{background:var(--wk)}.d.x{background:transparent;border-style:dashed}
+.n{font-weight:700;font-size:18px}
+.d .chip{cursor:pointer;text-align:start;width:100%}
+.d .chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r{display:grid;grid-template-columns:80px 220px 1fr 130px;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--ln)}
+.rd{font-weight:800;font-size:20px;color:var(--ac)}.rn{font-weight:700;font-size:17px}.rs{font-size:15px;color:var(--mu)}
+.r .pill{justify-self:start;padding:6px 12px;font-size:14px;font-weight:700;border-radius:999px}
+.empty{color:var(--mu);padding:12px 0}
+[hidden]{display:none!important}
+.aud{font-size:13px;font-weight:500;color:var(--mu)}
+@media (max-width:760px){form{grid-template-columns:1fr}.r{grid-template-columns:1fr;gap:4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div><div class="kick">جدول فعاليات الأكاديمية</div><h1>نوفمبر 2026</h1></div>
+<div class="leg"><span class="chip e"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>إلكترونية</span><span class="chip p"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>وجاهية</span></div>
+</header>
+
+<section class="card">
+<h2 id="ft">إضافة فعالية</h2>
+<form id="f">
+<label>التاريخ<input type="date" id="fd" min="2026-11-01" max="2026-11-30" required></label>
+<label>اسم الفعالية<input type="text" id="fn" maxlength="80" required></label>
+<label>شرح مبسط<input type="text" id="fs" maxlength="200"></label>
+<label>النوع<select id="ft2"><option value="e">إلكترونية</option><option value="p">وجاهية</option></select></label>
+<label>موجهة لـ<select id="fa"><option value="g">الأكاديمية بشكل عام</option><option value="t">فريق أو جامعة محددة</option></select></label>
+<label id="tl" hidden>اسم الفريق أو الجامعة<input type="text" id="ftm" maxlength="60"></label>
+<div class="btns"><button class="btn pri" type="submit" id="sb">إضافة</button><button class="btn del" type="button" id="db" hidden>حذف</button><button class="btn" type="button" id="cb" hidden>إلغاء</button></div>
+</form>
+<div id="msg" role="status"></div>
+</section>
+
+<div class="sc"><div class="cal" id="cal"></div></div>
+
+<section class="card"><h2>تفاصيل الفعاليات</h2><div id="list"></div></section>
+</div>
+
+<script>
+(function(){
+var IE='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>';
+var IP='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+var DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+var events=[],editing=null,store=null,local=false;
+var $=function(i){return document.getElementById(i)};
+function pad(n){return (n<10?'0':'')+n}
+function msg(t){$('msg').textContent=t||''}
+function dayOf(ev){return parseInt(String(ev.date||'').slice(8,10),10)}
+function sorted(){return events.slice().sort(function(a,b){return String(a.date).localeCompare(String(b.date))||String(a.name).localeCompare(String(b.name),'ar')})}
+
+function render(){
+ var cal=$('cal');cal.textContent='';
+ DAYS.forEach(function(n){var w=document.createElement('div');w.className='wd';w.textContent=n;cal.appendChild(w)});
+ var off=new Date(2026,10,1).getDay(),i,d,c;
+ for(i=0;i<off;i++){c=document.createElement('div');c.className='d x';cal.appendChild(c)}
+ for(d=1;d<=30;d++){
+  var dow=new Date(2026,10,d).getDay();
+  c=document.createElement('div');c.className='d'+(dow===5||dow===6?' w':'');
+  var n=document.createElement('span');n.className='n';n.textContent=d;c.appendChild(n);
+  sorted().filter(function(e){return dayOf(e)===d}).forEach(function(e){
+   var b=document.createElement('button');b.type='button';b.className='chip '+(e.type==='p'?'p':'e');
+   b.innerHTML=e.type==='p'?IP:IE;var s=document.createElement('span');s.textContent=(e.name||'')+(e.aud==='t'&&e.team?' · '+e.team:'');b.appendChild(s);
+   b.title=e.name||'';b.addEventListener('click',function(){edit(e.id)});c.appendChild(b)});
+  cal.appendChild(c)}
+ var tail=(7-((off+30)%7))%7;
+ for(i=0;i<tail;i++){c=document.createElement('div');c.className='d x';cal.appendChild(c)}
+ var L=$('list');L.textContent='';
+ var s=sorted();
+ if(!s.length){var em=document.createElement('div');em.className='empty';em.textContent='ما في فعاليات لسا. أضف أول فعالية من النموذج فوق.';L.appendChild(em)}
+ s.forEach(function(e){
+  var r=document.createElement('div');r.className='r';
+  var a=document.createElement('span');a.className='rd';a.textContent=dayOf(e)+'/11';
+  var b=document.createElement('span');b.className='rn';b.textContent=e.name||'';var au=document.createElement('div');au.className='aud';au.textContent=e.aud==='t'?('فريق أو جامعة: '+(e.team||'غير محدد')):'عامة للأكاديمية';b.appendChild(au);
+  var t=document.createElement('span');t.className='rs';t.textContent=e.desc||'';
+  var p=document.createElement('button');p.type='button';p.className='pill '+(e.type==='p'?'p':'e');
+  p.innerHTML=(e.type==='p'?IP:IE)+'<span>'+(e.type==='p'?'وجاهية':'إلكترونية')+'</span>';
+  p.addEventListener('click',function(){edit(e.id)});
+  r.appendChild(a);r.appendChild(b);r.appendChild(t);r.appendChild(p);L.appendChild(r)})
+}
+
+function edit(id){
+ var e=events.filter(function(x){return x.id===id})[0];if(!e)return;
+ editing=id;$('fd').value=e.date||'';$('fn').value=e.name||'';$('fs').value=e.desc||'';$('ft2').value=e.type==='p'?'p':'e';$('fa').value=e.aud==='t'?'t':'g';$('ftm').value=e.team||'';toggleT();
+ $('ft').textContent='تعديل فعالية';$('sb').textContent='حفظ التعديل';$('db').hidden=false;$('cb').hidden=false;
+ $('f').scrollIntoView({behavior:'smooth',block:'center'})
+}
+function reset(){
+ editing=null;$('f').reset();toggleT();$('ft').textContent='إضافة فعالية';$('sb').textContent='إضافة';$('db').hidden=true;$('cb').hidden=true;msg('')
+}
+function localSave(){try{localStorage.setItem('acad-nov-2026',JSON.stringify(events))}catch(x){}}
+function fail(e){msg(e&&e.code==='permission_denied'?'ما عندك صلاحية تعديل. اطلب من صاحب الكلندر يعطيك صلاحية.':'صار خطأ بالحفظ، جرّب مرة ثانية.')}
+
+function toggleT(){var t=$('fa').value==='t';$('tl').hidden=!t;if(!t)$('ftm').value=''}
+$('fa').addEventListener('change',toggleT);
+$('f').addEventListener('submit',function(ev){
+ ev.preventDefault();
+ var data={date:$('fd').value,name:$('fn').value.trim(),desc:$('fs').value.trim(),type:$('ft2').value,aud:$('fa').value,team:$('fa').value==='t'?$('ftm').value.trim():''};
+ if(!data.date||!data.name)return;
+ if(local){
+  if(editing){events=events.map(function(x){return x.id===editing?Object.assign({id:editing},data):x})}
+  else{events.push(Object.assign({id:'l'+Date.now()},data))}
+  localSave();render();reset();return}
+ if(!store){msg('انتظر لحظة، الحفظ لسا بيتجهز.');return}
+ (editing?store.set(editing,data):store.add(data)).then(function(){reset()},fail)
+});
+$('db').addEventListener('click',function(){
+ if(!editing)return;
+ if(local){events=events.filter(function(x){return x.id!==editing});localSave();render();reset();return}
+ store.del(editing).then(function(){reset()},fail)
+});
+$('cb').addEventListener('click',reset);
+render();
+
+function goLocal(){
+ local=true;
+ try{events=JSON.parse(localStorage.getItem('acad-nov-2026')||'[]')}catch(x){events=[]}
+ render();msg('الحفظ المشترك مش متاح هون، الفعاليات بتنحفظ على جهازك بس.')
+}
+if(window.claude&&claude.use){
+ claude.use('db').then(function(db){
+  if(!db){goLocal();return}
+  var col=db.collection('events');
+  store={add:function(d){return col.add(d)},set:function(id,d){return col.doc(id).set(d)},del:function(id){return col.doc(id).delete()}};
+  col.onSnapshot(function(snap){
+   events=snap.docs.map(function(x){var o=x.data()||{};o.id=x.id;return o});render()
+  },function(){msg('تعذر تحميل الفعاليات.')})
+ },goLocal)
+}else{goLocal()}
+})();
+</script>
+</body>
+</html>
