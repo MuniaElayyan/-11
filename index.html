@@ -78,6 +78,22 @@ input:focus,select:focus,button:focus-visible{outline:2px solid var(--ac);outlin
 var IE='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>';
 var IP='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
 var DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+var SEED=[
+{id:'e01',date:'2026-11-01',name:'كورس freelancing',desc:'تعاون مع اكاديمية المصري',type:'e',aud:'g',team:''},
+{id:'e02',date:'2026-11-03',name:'كورس C2 و C1',desc:'مواد جامعة الامريكية (كورس مسجل)',type:'e',aud:'g',team:''},
+{id:'e03',date:'2026-11-05',name:'سلسلة تطوير المهارات',desc:'الكتروني / وجاهي',type:'p',aud:'t',team:'ieee (الجامعة العربية الامريكية)'},
+{id:'e04',date:'2026-11-08',name:'الهوية البصرية',desc:'',type:'e',aud:'g',team:''},
+{id:'e05',date:'2026-11-11',name:'اطلاق الموقع الرسمي',desc:'',type:'e',aud:'g',team:''},
+{id:'e06',date:'2026-11-12',name:'سلسلة تطوير المهارات',desc:'الكتروني / وجاهي',type:'p',aud:'t',team:'ieee (الجامعة العربية الامريكية)'},
+{id:'e07',date:'2026-11-13',name:'سلسلة خبراء من سوق العمل',desc:'',type:'e',aud:'g',team:''},
+{id:'e08',date:'2026-11-16',name:'AI Event',desc:'',type:'e',aud:'g',team:''},
+{id:'e09',date:'2026-11-19',name:'سلسلة تطوير المهارات',desc:'الكتروني / وجاهي',type:'p',aud:'t',team:'ieee (الجامعة العربية الامريكية)'},
+{id:'e10',date:'2026-11-21',name:'problem solving',desc:'',type:'e',aud:'g',team:''},
+{id:'e11',date:'2026-11-26',name:'سلسلة تطوير المهارات',desc:'الكتروني / وجاهي',type:'p',aud:'t',team:'ieee (الجامعة العربية الامريكية)'},
+{id:'e12',date:'2026-11-27',name:'سلسلة Design',desc:'',type:'e',aud:'g',team:''},
+{id:'e13',date:'2026-11-29',name:'ورشة Cyber security',desc:'وجاهي / الكتروني',type:'p',aud:'t',team:'جامعة النجاح'},
+{id:'e14',date:'2026-11-30',name:'مفاجئة السفراء',desc:'',type:'e',aud:'g',team:''}
+];
 var events=[],editing=null,store=null,local=false;
 var $=function(i){return document.getElementById(i)};
 function pad(n){return (n<10?'0':'')+n}
@@ -150,19 +166,10 @@ render();
 
 function goLocal(){
  local=true;
- try{events=JSON.parse(localStorage.getItem('acad-nov-2026')||'[]')}catch(x){events=[]}
- render();msg('الحفظ المشترك مش متاح هون، الفعاليات بتنحفظ على جهازك بس.')
+ try{var raw=localStorage.getItem('acad-nov-2026');events=raw===null?SEED.slice():JSON.parse(raw)}catch(x){events=SEED.slice()}
+ render();msg('تعديلاتك بتنحفظ على جهازك، ولما ترجع بتلاقيها زي ما عدّلتها.')
 }
-if(window.claude&&claude.use){
- claude.use('db').then(function(db){
-  if(!db){goLocal();return}
-  var col=db.collection('events');
-  store={add:function(d){return col.add(d)},set:function(id,d){return col.doc(id).set(d)},del:function(id){return col.doc(id).delete()}};
-  col.onSnapshot(function(snap){
-   events=snap.docs.map(function(x){var o=x.data()||{};o.id=x.id;return o});render()
-  },function(){msg('تعذر تحميل الفعاليات.')})
- },goLocal)
-}else{goLocal()}
+goLocal();
 })();
 </script>
 </body>
