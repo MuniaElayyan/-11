@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>كلندر فعاليات الأكاديمية – نوفمبر 2026</title>
+<title>كلندر فعاليات الأكاديمية</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
 <style>
 :root{--bg:#F7F8FA;--sf:#fff;--ink:#1B2430;--mu:#4A5565;--ln:#DDE2EA;--wk:#EEF1F6;--ac:#1F5FBF;--acf:#fff;--eb:#E4EDFB;--ef:#174C9C;--pb:#FBE9D2;--pf:#7A3F05;--er:#B3261E;
@@ -41,6 +41,7 @@ input:focus,select:focus,button:focus-visible{outline:2px solid var(--ac);outlin
 .r{display:grid;grid-template-columns:80px 220px 1fr 130px;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--ln)}
 .rd{font-weight:800;font-size:20px;color:var(--ac)}.rn{font-weight:700;font-size:17px}.rs{font-size:15px;color:var(--mu)}
 .r .pill{justify-self:start;padding:6px 12px;font-size:14px;font-weight:700;border-radius:999px}
+.nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}.pick{display:flex;gap:8px}.pick select{width:150px}.pick input{width:100px}.n{cursor:pointer}
 .empty{color:var(--mu);padding:12px 0}
 [hidden]{display:none!important}
 .aud{font-size:13px;font-weight:500;color:var(--mu)}
@@ -50,14 +51,16 @@ input:focus,select:focus,button:focus-visible{outline:2px solid var(--ac);outlin
 <body>
 <div class="wrap">
 <header>
-<div><div class="kick">جدول فعاليات الأكاديمية</div><h1>نوفمبر 2026</h1></div>
+<div><div class="kick">جدول فعاليات الأكاديمية</div><h1 id="h1"></h1></div>
 <div class="leg"><span class="chip e"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>إلكترونية</span><span class="chip p"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>وجاهية</span></div>
 </header>
+
+<section class="card nav"><div class="btns"><button class="btn" type="button" id="pv">← الشهر السابق</button><button class="btn" type="button" id="nx">الشهر التالي →</button><button class="btn" type="button" id="td">اليوم</button></div><div class="pick"><select id="sm" aria-label="الشهر"></select><input type="number" id="sy" min="2000" max="2100" aria-label="السنة"></div></section>
 
 <section class="card">
 <h2 id="ft">إضافة فعالية</h2>
 <form id="f">
-<label>التاريخ<input type="date" id="fd" min="2026-11-01" max="2026-11-30" required></label>
+<label>التاريخ<input type="date" id="fd" required></label>
 <label>اسم الفعالية<input type="text" id="fn" maxlength="80" required></label>
 <label>شرح مبسط<input type="text" id="fs" maxlength="200"></label>
 <label>النوع<select id="ft2"><option value="e">إلكترونية</option><option value="p">وجاهية</option></select></label>
@@ -85,7 +88,7 @@ var SEED=[
 {id:'e04',date:'2026-11-08',name:'الهوية البصرية',desc:'',type:'e',aud:'g',team:''},
 {id:'e05',date:'2026-11-11',name:'اطلاق الموقع الرسمي',desc:'',type:'e',aud:'g',team:''},
 {id:'e06',date:'2026-11-12',name:'سلسلة تطوير المهارات',desc:'الكتروني / وجاهي',type:'p',aud:'t',team:'ieee (الجامعة العربية الامريكية)'},
-{id:'e07',date:'2026-11-13',name:'سلسلة خبراء من سوق العمل',desc:'',type:'e',aud:'g',team:''},
+{id:'e07',date:'2026-11-24',name:'سلسلة خبراء من سوق العمل',desc:'',type:'e',aud:'g',team:''},
 {id:'e08',date:'2026-11-16',name:'AI Event',desc:'',type:'e',aud:'g',team:''},
 {id:'e09',date:'2026-11-19',name:'سلسلة تطوير المهارات',desc:'الكتروني / وجاهي',type:'p',aud:'t',team:'ieee (الجامعة العربية الامريكية)'},
 {id:'e10',date:'2026-11-21',name:'problem solving',desc:'',type:'e',aud:'g',team:''},
@@ -94,35 +97,38 @@ var SEED=[
 {id:'e13',date:'2026-11-29',name:'ورشة Cyber security',desc:'وجاهي / الكتروني',type:'p',aud:'t',team:'جامعة النجاح'},
 {id:'e14',date:'2026-11-30',name:'مفاجئة السفراء',desc:'',type:'e',aud:'g',team:''}
 ];
-var events=[],editing=null,store=null,local=false;
+var MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+var cur={y:2026,m:10},events=[],editing=null,store=null,local=false;
 var $=function(i){return document.getElementById(i)};
+function ym(){return cur.y+'-'+pad(cur.m+1)}
+function inMonth(e){return String(e.date).slice(0,7)===ym()}
 function pad(n){return (n<10?'0':'')+n}
 function msg(t){$('msg').textContent=t||''}
 function dayOf(ev){return parseInt(String(ev.date||'').slice(8,10),10)}
 function sorted(){return events.slice().sort(function(a,b){return String(a.date).localeCompare(String(b.date))||String(a.name).localeCompare(String(b.name),'ar')})}
 
 function render(){
- var cal=$('cal');cal.textContent='';
+ var cal=$('cal');cal.textContent='';$('h1').textContent=MONTHS[cur.m]+' '+cur.y;$('sm').value=cur.m;$('sy').value=cur.y;var N=new Date(cur.y,cur.m+1,0).getDate();
  DAYS.forEach(function(n){var w=document.createElement('div');w.className='wd';w.textContent=n;cal.appendChild(w)});
- var off=new Date(2026,10,1).getDay(),i,d,c;
+ var off=new Date(cur.y,cur.m,1).getDay(),i,d,c;
  for(i=0;i<off;i++){c=document.createElement('div');c.className='d x';cal.appendChild(c)}
- for(d=1;d<=30;d++){
-  var dow=new Date(2026,10,d).getDay();
+ for(d=1;d<=N;d++){
+  var dow=new Date(cur.y,cur.m,d).getDay();
   c=document.createElement('div');c.className='d'+(dow===5||dow===6?' w':'');
-  var n=document.createElement('span');n.className='n';n.textContent=d;c.appendChild(n);
-  sorted().filter(function(e){return dayOf(e)===d}).forEach(function(e){
+  var n=document.createElement('span');n.className='n';n.textContent=d;n.title='إضافة فعالية بهذا اليوم';n.addEventListener('click',function(){if(!editing)$('fd').value=ym()+'-'+pad(d);$('fn').focus()});c.appendChild(n);
+  sorted().filter(function(e){return inMonth(e)&&dayOf(e)===d}).forEach(function(e){
    var b=document.createElement('button');b.type='button';b.className='chip '+(e.type==='p'?'p':'e');
    b.innerHTML=e.type==='p'?IP:IE;var s=document.createElement('span');s.textContent=(e.name||'')+(e.aud==='t'&&e.team?' · '+e.team:'');b.appendChild(s);
    b.title=e.name||'';b.addEventListener('click',function(){edit(e.id)});c.appendChild(b)});
   cal.appendChild(c)}
- var tail=(7-((off+30)%7))%7;
+ var tail=(7-((off+N)%7))%7;
  for(i=0;i<tail;i++){c=document.createElement('div');c.className='d x';cal.appendChild(c)}
  var L=$('list');L.textContent='';
- var s=sorted();
- if(!s.length){var em=document.createElement('div');em.className='empty';em.textContent='ما في فعاليات لسا. أضف أول فعالية من النموذج فوق.';L.appendChild(em)}
+ var s=sorted().filter(inMonth);
+ if(!s.length){var em=document.createElement('div');em.className='empty';em.textContent='ما في فعاليات بهذا الشهر. أضف فعالية من النموذج فوق.';L.appendChild(em)}
  s.forEach(function(e){
   var r=document.createElement('div');r.className='r';
-  var a=document.createElement('span');a.className='rd';a.textContent=dayOf(e)+'/11';
+  var a=document.createElement('span');a.className='rd';a.textContent=dayOf(e)+'/'+(cur.m+1);
   var b=document.createElement('span');b.className='rn';b.textContent=e.name||'';var au=document.createElement('div');au.className='aud';au.textContent=e.aud==='t'?('فريق أو جامعة: '+(e.team||'غير محدد')):'عامة للأكاديمية';b.appendChild(au);
   var t=document.createElement('span');t.className='rs';t.textContent=e.desc||'';
   var p=document.createElement('button');p.type='button';p.className='pill '+(e.type==='p'?'p':'e');
@@ -140,7 +146,13 @@ function edit(id){
 function reset(){
  editing=null;$('f').reset();toggleT();$('ft').textContent='إضافة فعالية';$('sb').textContent='إضافة';$('db').hidden=true;$('cb').hidden=true;msg('')
 }
-function localSave(){try{localStorage.setItem('acad-nov-2026',JSON.stringify(events))}catch(x){}}
+function go(y,m){while(m<0){m+=12;y--}while(m>11){m-=12;y++}cur={y:y,m:m};if(!editing)$('fd').value=ym()+'-01';render()}
+$('pv').addEventListener('click',function(){go(cur.y,cur.m-1)});$('nx').addEventListener('click',function(){go(cur.y,cur.m+1)});
+$('td').addEventListener('click',function(){var t=new Date();go(t.getFullYear(),t.getMonth())});
+MONTHS.forEach(function(n,i){var o=document.createElement('option');o.value=i;o.textContent=n;$('sm').appendChild(o)});
+$('sm').addEventListener('change',function(){go(cur.y,+$('sm').value)});
+$('sy').addEventListener('change',function(){var v=parseInt($('sy').value,10);if(v>=2000&&v<=2100)go(v,cur.m);else $('sy').value=cur.y});
+function localSave(){try{localStorage.setItem('acad-events',JSON.stringify(events))}catch(x){}}
 function fail(e){msg(e&&e.code==='permission_denied'?'ما عندك صلاحية تعديل. اطلب من صاحب الكلندر يعطيك صلاحية.':'صار خطأ بالحفظ، جرّب مرة ثانية.')}
 
 function toggleT(){var t=$('fa').value==='t';$('tl').hidden=!t;if(!t)$('ftm').value=''}
@@ -166,7 +178,7 @@ render();
 
 function goLocal(){
  local=true;
- try{var raw=localStorage.getItem('acad-nov-2026');events=raw===null?SEED.slice():JSON.parse(raw)}catch(x){events=SEED.slice()}
+ try{var raw=localStorage.getItem('acad-events')||localStorage.getItem('acad-nov-2026');events=raw===null?SEED.slice():JSON.parse(raw);events.forEach(function(x){if(x.id==='e07'&&x.date==='2026-11-13')x.date='2026-11-24'})}catch(x){events=SEED.slice()}
  render();msg('تعديلاتك بتنحفظ على جهازك، ولما ترجع بتلاقيها زي ما عدّلتها.')
 }
 goLocal();
